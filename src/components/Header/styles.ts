@@ -4,7 +4,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2.56rem 10.5rem;
+  padding: 2.56rem 0;
 `
 
 export const HeaderCartContainer = styled.nav`

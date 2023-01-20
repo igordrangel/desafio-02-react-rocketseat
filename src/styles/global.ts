@@ -25,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Baboo 2', sans-serif;
+    font-family: 'Baloo 2', sans-serif;
     font-weight: bold;
     line-height: 1.3;
   }

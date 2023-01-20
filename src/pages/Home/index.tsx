@@ -1,3 +1,11 @@
+import { Intro } from './components/Intro'
+import { ProductList } from './components/ProductList'
+
 export function Home() {
-  return <h1>Home</h1>
+  return (
+    <main>
+      <Intro />
+      <ProductList />
+    </main>
+  )
 }
