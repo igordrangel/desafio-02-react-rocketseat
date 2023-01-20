@@ -2,8 +2,12 @@ import { HeaderCartContainer, HeaderContainer } from './styles'
 import logo from '../../assets/logo.svg'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { Button } from '../Button'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 export function Header() {
+  const { cart } = useContext(CartContext)
+
   return (
     <HeaderContainer>
       <img src={logo} alt="" />
@@ -14,7 +18,7 @@ export function Header() {
           Campos dos Goytacazes, RJ
         </Button>
 
-        <Button badge={3} color="accent" size="small">
+        <Button badge={cart.totalQty} color="accent" size="small">
           <ShoppingCart size={22} weight="fill" />
         </Button>
       </HeaderCartContainer>

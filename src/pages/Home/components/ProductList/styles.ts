@@ -20,7 +20,7 @@ export const CardContainer = styled.div`
   padding: 0 1.125rem 1.125rem;
   margin: 1rem;
 
-  &:nth-child(1n + 4) {
+  &:nth-child(4n) {
     margin-right: 0;
   }
   &:nth-child(4n + 1) {

@@ -25,7 +25,7 @@ export function Button({
       color={color ?? 'primary'}
       {...props}
     >
-      {badge && <ButtonBadgeContent>{badge}</ButtonBadgeContent>}
+      {!!badge && <ButtonBadgeContent>{badge}</ButtonBadgeContent>}
       {children}
     </ButtonContent>
   )

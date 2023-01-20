@@ -12,14 +12,7 @@ import cubano from '../../../../assets/cubano.png'
 import havaiano from '../../../../assets/havaiano.png'
 import arabe from '../../../../assets/arabe.png'
 import irlandes from '../../../../assets/irlandes.png'
-
-interface Product {
-  img: string
-  tags: string[]
-  name: string
-  description: string
-  price: string
-}
+import { Product } from '../../../../reducers/cart/reducer'
 
 export const ProductListData: Product[] = [
   {
@@ -27,97 +20,101 @@ export const ProductListData: Product[] = [
     tags: ['Tradicional'],
     name: 'Expresso Tradicional',
     description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    price: 9.9,
   },
   {
     img: expressoAmericano,
     tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    name: 'Expresso Americano',
+    description: 'Expresso diluído, menos intenso que o tradicional',
+    price: 9.9,
   },
   {
     img: expressoCremoso,
     tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    name: 'Expresso Cremoso',
+    description: 'Café expresso tradicional com espuma cremosa',
+    price: 9.9,
   },
   {
     img: expressoGelado,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Tradicional', 'Gelado'],
+    name: 'Expresso Gelado',
+    description: 'Bebida preparada com café expresso e cubos de gelo',
+    price: 9.9,
   },
   {
     img: cafeComLeite,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Tradicional', 'Com Leite'],
+    name: 'Café com Leite',
+    description: 'Meio a meio de expresso tradicional com leite vaporizado',
+    price: 9.9,
   },
   {
     img: latte,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Tradicional', 'Com Leite'],
+    name: 'Latte',
+    description:
+      'Uma dose de café expresso com o dobro de leite e espuma cremosa',
+    price: 9.9,
   },
   {
     img: capuccino,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Tradicional', 'Com Leite'],
+    name: 'Capuccino',
+    description:
+      'Bebida com canela feita de doses iguais de café, leite e espuma',
+    price: 9.9,
   },
   {
     img: macchiato,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Tradicional', 'Com Leite'],
+    name: 'Macchiato',
+    description:
+      'Café expresso misturado com um pouco de leite quente e espuma',
+    price: 9.9,
   },
   {
     img: maccocino,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Tradicional', 'Com Leite'],
+    name: 'Mocaccino',
+    description: 'Café expresso com calda de chocolate, pouco leite e espuma',
+    price: 9.9,
   },
   {
     img: chocolateQuente,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Tradicional', 'Com Leite'],
+    name: 'Chocolate Quente',
+    description: 'Bebida feita com chocolate dissolvido no leite quente e café',
+    price: 9.9,
   },
   {
     img: cubano,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Tradicional', 'Alcoólico', 'Gelado'],
+    name: 'Cubano',
+    description:
+      'Drink gelado de café expresso com rum, creme de leite e hortelã',
+    price: 9.9,
   },
   {
     img: havaiano,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Especial'],
+    name: 'Havaiano',
+    description: 'Bebida adocicada preparada com café e leite de coco',
+    price: 9.9,
   },
   {
     img: arabe,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Especial'],
+    name: 'Árabe',
+    description: 'Bebida preparada com grãos de café árabe e especiarias',
+    price: 9.9,
   },
   {
     img: irlandes,
-    tags: ['Tradicional'],
-    name: 'Expresso Tradicional',
-    description: 'O tradicional café feito com água quente e grãos moídos',
-    price: '9,90',
+    tags: ['Especial', 'Alcoólico'],
+    name: 'Irlandês',
+    description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
+    price: 9.9,
   },
 ]
