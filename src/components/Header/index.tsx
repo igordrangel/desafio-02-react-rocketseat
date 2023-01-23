@@ -4,13 +4,16 @@ import { MapPin, ShoppingCart } from 'phosphor-react'
 import { Button } from '../Button'
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
+import { NavLink } from 'react-router-dom'
 
 export function Header() {
   const { cart } = useContext(CartContext)
 
   return (
     <HeaderContainer>
-      <img src={logo} alt="" />
+      <NavLink to="/">
+        <img src={logo} alt="" />
+      </NavLink>
 
       <HeaderCartContainer>
         <Button color="secondary" size="small">
@@ -18,9 +21,11 @@ export function Header() {
           Campos dos Goytacazes, RJ
         </Button>
 
-        <Button badge={cart.totalQty} color="accent" size="small">
-          <ShoppingCart size={22} weight="fill" />
-        </Button>
+        <NavLink to="/carrinho">
+          <Button badge={cart.totalQty} color="accent" size="small">
+            <ShoppingCart size={22} weight="fill" />
+          </Button>
+        </NavLink>
       </HeaderCartContainer>
     </HeaderContainer>
   )

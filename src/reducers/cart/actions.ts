@@ -1,4 +1,4 @@
-import { CartActionType, Product } from './reducer'
+import { CartActionType, Order, Product } from './reducer'
 
 export function addToCartAction(product: Product): CartActionType {
   return {
@@ -14,6 +14,24 @@ export function removeToCartAction(product: Product): CartActionType {
     type: 'remove',
     payload: {
       product,
+    },
+  }
+}
+
+export function updateProductOnCartAction(product: Product): CartActionType {
+  return {
+    type: 'update',
+    payload: {
+      product,
+    },
+  }
+}
+
+export function addOrderAction(order: Order): CartActionType {
+  return {
+    type: 'addOrder',
+    payload: {
+      order,
     },
   }
 }

@@ -15,14 +15,27 @@ export interface Cart {
   totalQty: number
 }
 
+export interface Order extends Cart {
+  zipCode: number
+  street: string
+  streetNumber?: number
+  streetComplement?: string
+  district: string
+  city: string
+  state: string
+  paymentType: string
+}
+
 export interface CartState {
   cart: Cart
+  order?: Order
 }
 
 export interface CartActionType {
-  type: 'add' | 'remove'
+  type: 'add' | 'update' | 'remove' | 'addOrder'
   payload: {
-    product: Product
+    product?: Product
+    order?: Order
   }
 }
 
@@ -43,15 +56,30 @@ export function CartReducer(state: CartState, action: CartActionType) {
     case 'add':
       return produce(state, (draft) => {
         const indexProduct = draft.cart.products.findIndex(
-          (productOnCart) => productOnCart.img === action.payload.product.img,
+          (productOnCart) => productOnCart.img === action.payload.product?.img,
         )
 
         if (indexProduct >= 0) {
           draft.cart.products[indexProduct].qty =
             (draft.cart.products[indexProduct].qty ?? 1) +
-            (action.payload.product.qty ?? 1)
-        } else {
+            (action.payload.product?.qty ?? 1)
+        } else if (action.payload.product) {
           draft.cart.products.push(action.payload.product)
+        }
+
+        draft.cart = {
+          ...draft.cart,
+          ...calc(draft.cart.products),
+        }
+      })
+    case 'update':
+      return produce(state, (draft) => {
+        const indexProduct = draft.cart.products.findIndex(
+          (productOnCart) => productOnCart.img === action.payload.product?.img,
+        )
+
+        if (indexProduct >= 0 && action.payload.product) {
+          draft.cart.products[indexProduct] = action.payload.product
         }
 
         draft.cart = {
@@ -62,12 +90,24 @@ export function CartReducer(state: CartState, action: CartActionType) {
     case 'remove':
       return produce(state, (draft) => {
         draft.cart.products = draft.cart.products.filter(
-          (productOnCart) => productOnCart.img !== action.payload.product.img,
+          (productOnCart) => productOnCart.img !== action.payload.product?.img,
         )
         draft.cart = {
           ...draft.cart,
           ...calc(draft.cart.products),
         }
+      })
+    case 'addOrder':
+      return produce(state, (draft) => {
+        draft.cart.products = draft.cart.products.filter(
+          (productOnCart) => productOnCart.img !== action.payload.product?.img,
+        )
+        draft.cart = {
+          products: [],
+          totalPrice: 0,
+          totalQty: 0,
+        }
+        draft.order = action.payload.order
       })
     default:
       return state

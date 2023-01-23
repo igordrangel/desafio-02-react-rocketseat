@@ -57,7 +57,7 @@ export const NumberInput = React.memo(
         <button type="button" onClick={stepDown}>
           <Minus size={14} weight="bold" />
         </button>
-        <input type="number" ref={internalRef} {...props} />
+        <input type="number" disabled ref={internalRef} {...props} />
         <button type="button" onClick={stepUp}>
           <Plus size={14} weight="bold" />
         </button>

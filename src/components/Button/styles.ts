@@ -4,27 +4,53 @@ export const BUTTON_COLLORS = {
   primary: {
     background: 'yellow',
     color: 'white',
+    hover: {
+      background: 'yellow-dark',
+      color: 'white',
+    },
   },
   secondary: {
     background: 'purple-light',
     color: 'purple-dark',
+    hover: {
+      background: 'purple-light',
+      color: 'purple-dark',
+    },
   },
   accent: {
     background: 'yellow-light',
     color: 'yellow-dark',
+    hover: {
+      background: 'yellow-light',
+      color: 'yellow-dark',
+    },
   },
   default: {
     background: 'purple-dark',
     color: 'white',
+    hover: {
+      background: 'purple-light',
+      color: 'white',
+    },
+  },
+  secondaryDefault: {
+    background: 'base-button',
+    color: 'base-text',
+    hover: {
+      background: 'base-hover',
+      color: 'base-text',
+    },
   },
 } as const
 
 export const BUTTON_SIZE = {
   small: {
     padding: '0.5rem',
+    fontSize: '0.75rem',
   },
   normal: {
     padding: '0.75rem',
+    fontSize: '1rem',
   },
 } as const
 
@@ -45,9 +71,21 @@ export const ButtonContent = styled.button<ButtonColorProps>`
   background-color: ${(props) =>
     props.theme[BUTTON_COLLORS[props.color].background]};
   color: ${(props) => props.theme[BUTTON_COLLORS[props.color].color]};
+  font-size: ${(props) => BUTTON_SIZE[props.size].fontSize};
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.4;
   cursor: pointer;
+  transition: 0.1s;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  &:hover {
+    background-color: ${(props) =>
+      props.theme[BUTTON_COLLORS[props.color].hover.background]};
+    color: ${(props) => props.theme[BUTTON_COLLORS[props.color].hover.color]};
+  }
 `
 
 export const ButtonBadgeContent = styled.div`

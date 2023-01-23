@@ -1,11 +1,19 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react'
-import { addToCartAction, removeToCartAction } from '../reducers/cart/actions'
-import { Cart, CartReducer, Product } from '../reducers/cart/reducer'
+import {
+  addOrderAction,
+  addToCartAction,
+  removeToCartAction,
+  updateProductOnCartAction,
+} from '../reducers/cart/actions'
+import { Cart, CartReducer, Order, Product } from '../reducers/cart/reducer'
 
 interface CartContextType {
   cart: Cart
+  order?: Order
   addToCart: (product: Product) => void
+  updateProductOnCart: (product: Product) => void
   removeToCart: (product: Product) => void
+  addOrder: (order: Order) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -33,7 +41,7 @@ export function CartContextProvider({ children }: CartContextProps) {
     },
   )
 
-  const { cart } = cartState
+  const { cart, order } = cartState
 
   useEffect(() => {
     const stateJSON = JSON.stringify(cartState)
@@ -48,8 +56,25 @@ export function CartContextProvider({ children }: CartContextProps) {
     dispatch(removeToCartAction(product))
   }
 
+  function updateProductOnCart(product: Product) {
+    dispatch(updateProductOnCartAction(product))
+  }
+
+  function addOrder(order: Order) {
+    dispatch(addOrderAction(order))
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeToCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        order,
+        addToCart,
+        updateProductOnCart,
+        removeToCart,
+        addOrder,
+      }}
+    >
       {children}
     </CartContext.Provider>
   )
