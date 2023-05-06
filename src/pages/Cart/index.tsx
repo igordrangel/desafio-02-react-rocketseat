@@ -24,7 +24,7 @@ import { Order, Product } from '../../reducers/cart/reducer'
 import { useNavigate } from 'react-router-dom'
 
 export function Cart() {
-  const { register, handleSubmit } = useForm<Order>()
+  const { register, handleSubmit, setValue } = useForm<Order>()
   const cartState = useContext(CartContext)
   const navigate = useNavigate()
 
@@ -48,6 +48,20 @@ export function Cart() {
     })
   }
 
+  function handleCep(event: ChangeEvent<HTMLInputElement>) {
+    const cep = event.target.value
+    if (cep.length === 8) {
+      fetch(`https://viacep.com.br/ws/${cep}/json`)
+        .then((response) => response.json())
+        .then((address) => {
+          setValue('street', address.logradouro)
+          setValue('district', address.bairro)
+          setValue('state', address.uf)
+          setValue('city', address.localidade)
+        })
+    }
+  }
+
   return (
     <CartContainer>
       <form onSubmit={handleSubmit(confirmOrder)}>
@@ -64,10 +78,11 @@ export function Cart() {
 
             <div className="col-3">
               <input
-                type="number"
+                type="text"
                 required
                 placeholder="CEP"
                 {...register('zipCode', { valueAsNumber: true })}
+                onChange={handleCep}
               />
             </div>
 
